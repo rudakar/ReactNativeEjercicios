@@ -10,7 +10,7 @@ function RenderExcursion(props) {
         if (excursion != null) {
             return(
             <Card>
-              <Card.Title>{excursion.nombre}</Card.Title>
+              <Card.Title style={{ color: 'chocolate' }}>{excursion.nombre}</Card.Title>
               <Card.Divider/>
               <Card.Image source={require('./imagenes/40Años.png')}></Card.Image>
               <Text style={{margin: 20}}>

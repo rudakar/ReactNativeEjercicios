@@ -7,6 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "./HomeComponent";
+import Contacto from "./ContactoComponent";
+import QuienesSomos from "./QuienesSomosComponent";
+
 
 // Creación de stacks y drawer
 const Stack = createNativeStackNavigator();
@@ -18,6 +21,7 @@ function CalendarioNavegador() {
     <Stack.Navigator
       initialRouteName="Calendar"
       screenOptions={{
+        headerTitleAlign: 'center',
         headerTintColor: "#fff",
         headerStyle: { backgroundColor: "#015afc" },
         headerTitleStyle: { color: "#fff" },
@@ -36,6 +40,44 @@ function CalendarioNavegador() {
     </Stack.Navigator>
   );
 }
+function QuienesSomosNavegador() {
+  return (
+    <Stack.Navigator
+      initialRouteName="QuienesSomos"
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTintColor: "#fff",
+        headerStyle: { backgroundColor: "#015afc" },
+        headerTitleStyle: { color: "#fff" },
+      }}
+    >
+      <Stack.Screen
+        name="QuienesSomos"
+        component={QuienesSomos}
+        options={{ title: "¿Quiénes somos?" }}
+      />
+    </Stack.Navigator>
+  );
+}
+function ContactoNavegador() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Contacto"
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTintColor: "#fff",
+        headerStyle: { backgroundColor: "#015afc" },
+        headerTitleStyle: { color: "#fff" },
+      }}
+    >
+      <Stack.Screen
+        name="Contacto"
+        component={Contacto}
+        options={{ title: "Contacto" }}
+      />
+    </Stack.Navigator>
+  );
+}
 
 // Stack para la navegación de Home
 function HomeNavegador() {
@@ -43,6 +85,7 @@ function HomeNavegador() {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
+        headerTitleAlign: 'center',
         headerTintColor: "#fff",
         headerStyle: { backgroundColor: "#015afc" },
         headerTitleStyle: { color: "#fff" },
@@ -68,7 +111,11 @@ function DrawerNavegador() {
       }}
     >
       <Drawer.Screen name="Campo base" component={HomeNavegador} />
+      <Drawer.Screen name="Quiénes somos" component={QuienesSomosNavegador} />
       <Drawer.Screen name="Calendario" component={CalendarioNavegador} />
+      <Drawer.Screen name="Contacto" component={ContactoNavegador} />
+      
+
     </Drawer.Navigator>
   );
 }
