@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View,ScrollView } from 'react-native';
 import { Card, Icon } from '@rneui/themed';
-import { EXCURSIONES } from '../comun/excursiones';
-import { COMENTARIOS } from '../comun/comentarios';
 import { baseUrl } from '../comun/comun';
+import { connect } from 'react-redux';
 
 function RenderExcursion(props) {
     const excursion = props.excursion;
@@ -67,8 +66,6 @@ class DetalleExcursion extends Component {
         constructor(props) {
             super(props);
             this.state = {
-                excursiones: EXCURSIONES,
-                comentarios: COMENTARIOS,
                 favoritos: []
               };
               
@@ -86,12 +83,12 @@ class DetalleExcursion extends Component {
             return (
               <ScrollView>
                 <RenderExcursion
-                  excursion={this.state.excursiones[id]}
+                  excursion={this.props.excursiones.excursiones[id]}
                   favorita={this.state.favoritos.includes(id)}
                   onPress={() => this.marcarFavorito(id)}
                 />
                 <RenderComentario
-                  comentarios={this.state.comentarios.filter(c => c.excursionId === id)}
+                  comentarios={this.props.comentarios.comentarios.filter(c => c.excursionId === id)}
                 />
               </ScrollView>
             );
@@ -99,4 +96,11 @@ class DetalleExcursion extends Component {
           
 }
 
-export default DetalleExcursion;
+const mapStateToProps = state => {
+  return {
+    excursiones: state.excursiones,
+    comentarios: state.comentarios
+  };
+};
+
+export default connect(mapStateToProps)(DetalleExcursion);

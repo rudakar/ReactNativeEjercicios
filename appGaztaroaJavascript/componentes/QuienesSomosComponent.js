@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
 import { Card, ListItem, Avatar } from '@rneui/themed';
-import { ACTIVIDADES } from '../comun/actividades';
 import { baseUrl } from '../comun/comun';
+import { connect } from 'react-redux';
 
 // Componente funcional para la historia
 function Historia() {
@@ -20,12 +20,7 @@ function Historia() {
 }
 
 class QuienesSomos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      actividades: ACTIVIDADES
-    };
-  }
+  
 
   render() {
     return (
@@ -42,7 +37,7 @@ class QuienesSomos extends Component {
           <Card.Title style={{ textAlign: 'center' }}>Actividades y recursos</Card.Title>
           <Card.Divider />
 
-          {this.state.actividades.map((item, index) => (
+          {this.props.actividades.actividades.map((item, index) => (
             <ListItem key={index} bottomDivider>
               <Avatar source={{ uri: baseUrl + item.imagen }} />
               <ListItem.Content>
@@ -67,4 +62,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default QuienesSomos;
+const mapStateToProps = state => {
+  return {
+    actividades: state.actividades
+  };
+};
+
+export default connect(mapStateToProps)(QuienesSomos);
+

@@ -12,6 +12,15 @@ import QuienesSomos from "./QuienesSomosComponent";
 import { Icon } from "@rneui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../comun/comun';
+import { connect } from 'react-redux';
+import { fetchExcursiones, fetchComentarios, fetchCabeceras, fetchActividades } from '../redux/ActionCreators';
+
+const mapDispatchToProps = dispatch => ({
+  fetchExcursiones: () => dispatch(fetchExcursiones()),
+  fetchComentarios: () => dispatch(fetchComentarios()),
+  fetchCabeceras: () => dispatch(fetchCabeceras()),
+  fetchActividades: () => dispatch(fetchActividades()),
+});
 
 // Creación de stacks y drawer
 const Stack = createNativeStackNavigator();
@@ -219,6 +228,13 @@ function DrawerNavegador() {
 
 // Componente principal que envuelve la navegación
 class Campobase extends Component {
+  componentDidMount() {
+    this.props.fetchExcursiones();
+    this.props.fetchComentarios();
+    this.props.fetchCabeceras();
+    this.props.fetchActividades();
+  }
+
   render() {
     return (
       <NavigationContainer>
@@ -235,7 +251,8 @@ class Campobase extends Component {
   }
 }
 
-export default Campobase;
+export default connect(null, mapDispatchToProps)(Campobase);
+
 
 const styles = StyleSheet.create({
   container: {
