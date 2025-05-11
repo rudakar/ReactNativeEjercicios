@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
 import { Card, ListItem, Avatar } from '@rneui/themed';
 import { ACTIVIDADES } from '../comun/actividades';
+import { baseUrl } from '../comun/comun';
 
 // Componente funcional para la historia
 function Historia() {
@@ -43,7 +44,7 @@ class QuienesSomos extends Component {
 
           {this.state.actividades.map((item, index) => (
             <ListItem key={index} bottomDivider>
-              <Avatar source={require('./imagenes/40Años.png')} />
+              <Avatar source={{ uri: baseUrl + item.imagen }} />
               <ListItem.Content>
                 <ListItem.Title>{item.nombre}</ListItem.Title>
                 <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>

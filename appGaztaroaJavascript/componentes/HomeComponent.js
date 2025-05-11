@@ -4,6 +4,7 @@ import { Card } from '@rneui/themed';
 import { EXCURSIONES } from '../comun/excursiones';
 import { CABECERAS } from '../comun/cabeceras';
 import { ACTIVIDADES } from '../comun/actividades';
+import { baseUrl } from '../comun/comun';
 
 function RenderItem(props) {
     
@@ -12,9 +13,19 @@ function RenderItem(props) {
         if (item != null) {
             return(
                 <Card>
-                    <Card.Title style={{ color: 'chocolate' }}>{item.nombre}</Card.Title>
-                    <Card.Divider/>
-                    <Card.Image source={require('./imagenes/40Años.png')}></Card.Image>
+                    <Card.Image source={{ uri: baseUrl + item.imagen }} style={{ justifyContent: 'center', alignItems: 'center', height: 200 }}>
+                        <Text style={{
+                            color: 'white',
+                            fontSize: 24,
+                            fontWeight: 'bold',
+                            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                            paddingHorizontal: 10,
+                            paddingVertical: 5,
+                            borderRadius: 10
+                            }}>
+                            {item.nombre}
+                        </Text>
+                    </Card.Image>
                     <Text style={{margin: 20}}>
                         {item.descripcion}
                     </Text>

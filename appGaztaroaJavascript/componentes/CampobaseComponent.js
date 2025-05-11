@@ -11,6 +11,7 @@ import Contacto from "./ContactoComponent";
 import QuienesSomos from "./QuienesSomosComponent";
 import { Icon } from "@rneui/themed";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../comun/comun';
 
 // Creación de stacks y drawer
 const Stack = createNativeStackNavigator();
@@ -42,7 +43,7 @@ function CalendarioNavegador() {
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: "#fff",
-        headerStyle: { backgroundColor: "#015afc" },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: "#fff" },
       }}
     >
@@ -78,7 +79,7 @@ function QuienesSomosNavegador() {
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: "#fff",
-        headerStyle: { backgroundColor: "#015afc" },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: "#fff" },
       }}
     >
@@ -109,7 +110,7 @@ function ContactoNavegador() {
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: "#fff",
-        headerStyle: { backgroundColor: "#015afc" },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: "#fff" },
       }}
     >
@@ -140,7 +141,7 @@ function HomeNavegador() {
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: "#fff",
-        headerStyle: { backgroundColor: "#015afc" },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: "#fff" },
       }}
     >
@@ -172,7 +173,7 @@ function DrawerNavegador() {
       screenOptions={{
         headerShown: false,
         drawerStyle: {
-          backgroundColor: '#c2d3da',
+          backgroundColor: colorGaztaroaClaro,
         },
       }}
     >

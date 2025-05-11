@@ -3,6 +3,7 @@ import { Text, View,ScrollView } from 'react-native';
 import { Card, Icon } from '@rneui/themed';
 import { EXCURSIONES } from '../comun/excursiones';
 import { COMENTARIOS } from '../comun/comentarios';
+import { baseUrl } from '../comun/comun';
 
 function RenderExcursion(props) {
     const excursion = props.excursion;
@@ -10,9 +11,19 @@ function RenderExcursion(props) {
     if (excursion != null) {
       return (
         <Card>
-          <Card.Title style={{ color: 'chocolate', textAlign: 'center' }}>{excursion.nombre}</Card.Title>
-          <Card.Divider />
-          <Card.Image source={require('./imagenes/40Años.png')} />
+          <Card.Image source={{ uri: baseUrl + excursion.imagen }} style={{ justifyContent: 'center', alignItems: 'center', height: 200 }}>
+            <Text style={{
+                color: 'white',
+                fontSize: 24,
+                fontWeight: 'bold',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderRadius: 10
+              }}>
+              {excursion.nombre}
+            </Text>
+          </Card.Image>
           <Text style={{ margin: 20 }}>{excursion.descripcion}</Text>
           <Icon
             raised
