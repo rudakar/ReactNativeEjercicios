@@ -3,8 +3,9 @@ import { Text, ScrollView, StyleSheet } from 'react-native';
 import { Card, ListItem, Avatar } from '@rneui/themed';
 import { baseUrl } from '../comun/comun';
 import { connect } from 'react-redux';
+import { IndicadorActividad } from './IndicadorActividadComponent';
 
-// Componente funcional para la historia
+
 function Historia() {
   return (
     <Card>
@@ -23,20 +24,38 @@ class QuienesSomos extends Component {
   
 
   render() {
+    if (this.props.actividades.isLoading) {
+      return (
+        <ScrollView>
+          <Historia />
+          <Card>
+            <Card.Title style={{ textAlign: 'center' }}>Actividades y recursos</Card.Title>
+            <Card.Divider />
+            <IndicadorActividad />
+          </Card>
+        </ScrollView>
+      );
+    }
+  
+    if (this.props.actividades.errMess) {
+      return (
+        <ScrollView>
+          <Historia />
+          <Card>
+            <Card.Title style={{ textAlign: 'center' }}>Actividades y recursos</Card.Title>
+            <Card.Divider />
+            <Text>{this.props.actividades.errMess}</Text>
+          </Card>
+        </ScrollView>
+      );
+    }
+  
     return (
       <ScrollView>
-
-        {/* Tarjeta de historia */}
         <Historia />
-
-        {/* Espacio entre tarjetas */}
-        <Text style={{ marginTop: 20 }} />
-
-        {/* Tarjeta de actividades */}
         <Card>
           <Card.Title style={{ textAlign: 'center' }}>Actividades y recursos</Card.Title>
           <Card.Divider />
-
           {this.props.actividades.actividades.map((item, index) => (
             <ListItem key={index} bottomDivider>
               <Avatar source={{ uri: baseUrl + item.imagen }} />
@@ -50,6 +69,7 @@ class QuienesSomos extends Component {
       </ScrollView>
     );
   }
+  
 }
 
 const styles = StyleSheet.create({
@@ -69,4 +89,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(QuienesSomos);
+
 
