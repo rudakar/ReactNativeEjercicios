@@ -5,9 +5,12 @@ import Campobase from './componentes/CampobaseComponent';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { ConfigureStore } from './redux/configureStore';
+import { LogBox } from 'react-native';
 
 const store = ConfigureStore();
-
+LogBox.ignoreLogs([
+  'Support for defaultProps will be removed from function components',
+]);
 export default function App() {
   return (
     <Provider store={store}>
